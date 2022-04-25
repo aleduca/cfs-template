@@ -12,11 +12,11 @@ class Cache
         return "{$path}/resources/storage/cache/{$cacheName}.txt";
     }
 
-    public static function get(string $cacheName, callable $callback, int $cacheValidation)
+    public static function get(string $cacheName, callable $callback, int $cacheTimeExpiration = 5)
     {
         $cachePath = self::cachePath($cacheName);
 
-        if (!file_exists($cachePath) || strtotime("+ {$cacheValidation} minutes", filemtime($cachePath)) < strtotime('now')) {
+        if (!file_exists($cachePath) || strtotime("+ {$cacheTimeExpiration} minutes", filemtime($cachePath)) < strtotime('now')) {
             file_put_contents($cachePath, json_encode($callback()));
             return $callback();
         }

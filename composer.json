@@ -22,6 +22,7 @@
         "process-timeout": 0
     },
     "require": {
-        "symfony/var-dumper": "^6.0"
+        "symfony/var-dumper": "^6.0",
+        "vlucas/phpdotenv": "^5.4"
     }
 }

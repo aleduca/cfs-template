@@ -7,11 +7,11 @@ class LoginController
 {
     public function index()
     {
-        $data = Cache::get('name',function(){
+        $data = Cache::get('name', function () {
             return ['name' => 'Joao'];
         }, 5);
 
-        view('login',$data);
+        view('login', $data);
     }
 
     public function store()
