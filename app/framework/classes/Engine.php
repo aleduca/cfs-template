@@ -37,9 +37,9 @@ class Engine
             if (!empty($this->layout)) {
                 self::$content = $content; // content from template (e.g. home or login)
                 $data = array_merge($this->data, $data); // this->data came from extends
-            }else{
                 return view($this->layout, $data);
             }
+            
             return $content;
         } catch (\Throwable $th) {
             echo $th->getMessage(). ' '.$th->getFile() . ' '.$th->getLine();
