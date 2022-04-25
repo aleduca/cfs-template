@@ -33,3 +33,16 @@ function routerExecute()
     $routes = require '../app/framework/routes/router.php';
     Router::execute($routes);
 }
+
+// convenient way to get uri
+
+function path($index = 'path')
+{
+    return parse_url($_SERVER['REQUEST_URI'])[$index];
+}
+
+// convenient way to request method
+function request()
+{
+    return $_SERVER['REQUEST_METHOD'];
+}

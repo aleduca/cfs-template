@@ -7,9 +7,9 @@ class Router
 {
     public static function execute($routes)
     {
-        $path = $_SERVER['REQUEST_URI'];
-        $request = $_SERVER['REQUEST_METHOD'];
-        
+        $path = path();
+        $request = request();
+
         if (!isset($routes[$request])) {
             throw new Exception("Route does not exist");
         }
