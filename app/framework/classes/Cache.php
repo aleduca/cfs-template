@@ -9,6 +9,14 @@ class Cache
     {
         $path = dirname(__FILE__, 2);
         $cacheName = self::CACHE_PREFIX.$cacheName;
+
+        /**
+         * Maybe because of the .gitignore file,
+         * but the storage and cache folders are not sent to github, so I created them here.
+         */
+        if (!is_dir("{$path}/resources/storage/cache")) {
+            mkdir("{$path}/resources/storage/cache/", 0777, true);
+        }
         return "{$path}/resources/storage/cache/{$cacheName}.txt";
     }
 
