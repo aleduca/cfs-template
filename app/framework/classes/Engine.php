@@ -6,17 +6,7 @@ class Engine
     private string $layout;
     private array $layoutData;
     private static $content;
-    private const EXTENSION = '.php';
-
-    private function getViewPath(string $file):string
-    {
-        $file = dirname(__FILE__, 2).DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.$file.self::EXTENSION;
-        if (!file_exists($file)) {
-            throw new \Exception("Template {$file} does not exist");
-        }
-        return $file;
-    }
-
+    private const TEMPLATE_EXTENSION = '.php';
     private function load()
     {
         if (self::$content) {
@@ -33,7 +23,7 @@ class Engine
     public function render(string $path, array $data = [])
     {
         try {
-            $path = $this->getViewPath($path);
+            $path = getViewPath($path, 'php');
 
             ob_start();
 
