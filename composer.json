@@ -1,0 +1,27 @@
+{
+    "name": "alexandrexandecar/composer",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        },
+        "files": [
+            "app/framework/helpers/helpers.php"
+        ]
+    },
+    "scripts": {
+        "server":"php -S localhost:8000 -t public",
+        "teste":"php public/teste.php"
+    },
+    "authors": [
+        {
+            "name": "Alexandre Cardoso",
+            "email": "xandecar@hotmail.com"
+        }
+    ],
+    "config": {
+        "process-timeout": 0
+    },
+    "require": {
+        "symfony/var-dumper": "^6.0"
+    }
+}
