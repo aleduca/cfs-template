@@ -25,11 +25,6 @@ class Engine
         $this->layoutData = $data;
     }
 
-    private function escape(string $content)
-    {
-        return strip_tags($content);
-    }
-
     public function render(string $path, array $data = [])
     {
         if (!file_exists($path)) {
