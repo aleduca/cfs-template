@@ -10,7 +10,4 @@ return
     'POST' => [
         '/login' => 'LoginController@store'
     ],
-    'ERROR' => [
-        '/notFoundController' => 'NotFoundController@index'
-    ]
 ];

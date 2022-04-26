@@ -8,12 +8,13 @@ class HomeController
 {
     public function index()
     {
-        $cache = Cache::get('users', function () {
+        // If you dont make any connection with the database,with this code(cache) you will get an error.
+        $users = Cache::get('users', function () {
             $connect = Connect::connect();
             $users = $connect->query("select * from users");
             return $users->fetchAll();
         }, 5);
 
-        view('home', ['users' => $cache,'name' => 'Alexandre']);
+        view('home', ['users' => $users,'name' => 'Alexandre']);
     }
 }

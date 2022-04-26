@@ -10,6 +10,12 @@
 <body>
     <h1>From master page</h1>
 
+    <!-- Load de menu -->
+    <?php $this->section('menu'); ?>
+    
+    <!-- load de css -->
+    <?php $this->section('css'); ?>
+
     <div class="container">
         <?php echo $this->load(); ?>
     </div>

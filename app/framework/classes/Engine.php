@@ -6,11 +6,30 @@ class Engine
     private ?string $layout;
     private array $data;
     private static string $content;
+    private static array $section;
+    private static string $actualSection;
     private const TEMPLATE_EXTENSION = 'php';
 
     private function load():string
     {
         return (self::$content) ?? '';
+    }
+
+    private function section(string $name)
+    {
+        echo self::$section[$name] ?? null;
+    }
+
+    private function start(string $name)
+    {
+        ob_start();
+        self::$actualSection = $name;
+    }
+    
+    private function end()
+    {
+        self::$section[self::$actualSection] = ob_get_contents();
+        ob_end_clean();
     }
 
     private function extends(string $layout, array $data = []):void
