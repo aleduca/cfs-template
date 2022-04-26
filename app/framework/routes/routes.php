@@ -5,9 +5,12 @@ return
     'GET' =>
     [
         '/' => 'HomeController@index',
-        '/login' => 'LoginController@index'
+        '/login' => 'LoginController@index',
     ],
     'POST' => [
         '/login' => 'LoginController@store'
+    ],
+    'ERROR' => [
+        '/notFoundController' => 'NotFoundController@index'
     ]
 ];

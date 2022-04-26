@@ -30,8 +30,13 @@ function getViewPath(string $file, string $extension):string
 // to instance controller and call the action (maybe put in a class)
 function routerExecute()
 {
-    $routes = require '../app/framework/routes/router.php';
-    Router::execute($routes);
+    try {
+        $routes = require '../app/framework/routes/routes.php';
+        $router = new Router;
+        $router->execute($routes);
+    } catch (\Throwable $th) {
+        echo $th->getMessage();
+    }
 }
 
 // convenient way to get uri

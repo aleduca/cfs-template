@@ -5,30 +5,43 @@ use Exception;
 
 class Router
 {
-    public static function execute($routes)
-    {
-        $path = path();
-        $request = request();
+    private string $request;
+    private string $path;
 
-        if (!isset($routes[$request])) {
-            throw new Exception("Route does not exist");
+    private function routeFound($routes)
+    {
+        if (!isset($routes[$this->request])) {
+            throw new Exception("Route {$this->path} does not exist");
         }
         
-        if (!isset($routes[$request][$path])) {
-            throw new Exception("Route does not exist");
+        if (!isset($routes[$this->request][$this->path])) {
+            throw new Exception("Route {$this->path} does not exist");
         }
-        
-        [$controller, $action] = explode('@', $routes[$request][$path]);
-        
-        $controllerNamespace = "app\\controllers\\{$controller}";
-        
+    }
+
+    private function controllerFound($controllerNamespace, $controller, $action)
+    {
         if (!class_exists($controllerNamespace)) {
             throw new Exception("Controller {$controller} does not exist");
         }
         
-        if (!class_exists($controllerNamespace, $action)) {
+        if (!method_exists($controllerNamespace, $action)) {
             throw new Exception("Method {$action} does not exist on controller {$controller}");
         }
+    }
+
+    public function execute($routes)
+    {
+        $this->path = path();
+        $this->request = request();
+
+        $this->routeFound($routes);
+
+        [$controller, $action] = explode('@', $routes[$this->request][$this->path]);
+        
+        $controllerNamespace = "app\\controllers\\{$controller}";
+
+        $this->controllerFound($controllerNamespace, $controller, $action);
         
         $controllerInstance = new $controllerNamespace;
         $controllerInstance->$action();
