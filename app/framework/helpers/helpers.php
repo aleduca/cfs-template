@@ -1,12 +1,14 @@
 <?php
 
 use app\framework\classes\Engine;
+use app\framework\classes\Macros;
 use app\framework\classes\Router;
 
 // call the Engine to ender page
 function View(string $path, array $data = [])
 {
     $engine = new Engine;
+    $engine->dependencies([new Macros]);
     echo $engine->render($path, $data);
 }
 

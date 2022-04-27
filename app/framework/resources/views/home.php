@@ -2,6 +2,8 @@
 
 <h1 id="home">Olá <?php echo $name; ?></h1>
 
+<?php echo $this->upper('alexandre'); ?>
+
 <!-- In master template you must create a section with $this->section('menu') -->
 <?php $this->start('menu'); ?>
     <ul>
