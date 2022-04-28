@@ -4,10 +4,10 @@ module.exports = {
      mode: process.env.NODE_ENV ,
      devtool: process.env.NODE_ENV == 'development' ? 'source-map' : false,
      entry: {
-          app: ['./public/assets/app.js'],
+          app: ['./public/assets/js/app.js'],
      },
      output: {
-          path: path.resolve(__dirname, 'public'),
+          path: path.resolve(__dirname, 'public','assets','js','dist'),
           filename: '[name].js',
      },
      module: {
