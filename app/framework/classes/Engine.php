@@ -8,31 +8,37 @@ class Engine
 {
     private ?string $layout;
     private array $data;
-    private static string $content;
-    private static array $section;
-    private static string $actualSection;
+    private string $content;
+    private array $section;
+    private string $actualSection;
     private array $dependencies = [];
     private const TEMPLATE_EXTENSION = 'php';
+    private static $countInstances = 0;
+
+    public function __construct()
+    {
+        self::$countInstances++;
+    }
 
     private function load():string
     {
-        return (self::$content) ?? '';
+        return ($this->content) ?? '';
     }
 
     private function section(string $name)
     {
-        echo self::$section[$name] ?? null;
+        echo $this->section[$name] ?? null;
     }
 
     private function start(string $name)
     {
         ob_start();
-        self::$actualSection = $name;
+        $this->actualSection = $name;
     }
     
     private function end()
     {
-        self::$section[self::$actualSection] = ob_get_contents();
+        $this->section[$this->actualSection] = ob_get_contents();
         ob_end_clean();
     }
 
@@ -81,9 +87,11 @@ class Engine
             ob_end_clean();
 
             if (!empty($this->layout)) {
-                self::$content = $content; // content from template (e.g. home or login)
+                $this->content = $content; // content from template (e.g. home or login)
                 $data = array_merge($this->data, $data); // this->data came from extends
-                return view($this->layout, $data);
+                $layout = $this->layout;
+                $this->layout = null;
+                return $this->render($layout, $data);
             }
             
             return $content;

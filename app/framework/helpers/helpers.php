@@ -12,13 +12,6 @@ function View(string $path, array $data = [])
     echo $engine->render($path, $data);
 }
 
-// to remove html tags in template
-// you can use htmlentities with ENT_QUOTES or create another function
-function escape(string $content)
-{
-    return strip_tags($content);
-}
-
 // to get the view path
 function getViewPath(string $file, string $extension):string
 {

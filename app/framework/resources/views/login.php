@@ -3,10 +3,7 @@
 <h2>Login <?php echo $name; ?></h2>
 
 <?php $this->start('menu'); ?>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/login">Login</a></li>
-    </ul>
+    <?php require 'partials/menu.php'; ?>
 <?php $this->end(); ?>
 
 <form action="/login" method="post">

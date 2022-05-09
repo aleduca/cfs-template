@@ -14,4 +14,9 @@ class Macros
     {
         return $this->macros['upper'] = strtoupper($value);
     }
+
+    public function lower(string $value)
+    {
+        return $this->macros['lower'] = strtolower($value);
+    }
 }
